@@ -41,7 +41,7 @@ jobs:
         with:
           repo_token: "${{ secrets.TOKEN }}"
           prerelease: false
-          automatic_release_tag: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "${{ secrets.TOKEN }}"
           title: Release
           files: |
             ./build/libs/gitlab_monitor.jar
