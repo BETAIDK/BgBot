@@ -1,15 +1,13 @@
-name: Java CI with Gradle.
+name: Create release.
 
 on:
   push:
     branches: ['30-releases']
 
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+permissions: write-all
 
 jobs:
-  build-and-push-image:
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -30,11 +28,20 @@ jobs:
         with:
           arguments: bootJar
 
-      - name: test
-        run: | 
-          ls -la
+  relese:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    needs: build
 
-      - name: test2
-        working-directory: build
-        run: |
-          ls -la
+    steps:
+      - name: Release
+        uses: IdanKoblik/action-automatic-releases@v0.2
+        with:
+          repo_token: "${{ secrets.TOKEN }}"
+          prerelease: false
+          automatic_release_tag: "${{ secrets.GITHUB_TOKEN }}"
+          title: Release
+          files: |
+            ./build/libs/gitlab_monitor.jar
