@@ -31,8 +31,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: test2
+        run: |
+          ls -la
+
       - name: Create Release
-        uses: IdanKoblik/action-automatic-releases@v0.2
+        uses: marvinpinto/action-automatic-releases
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
