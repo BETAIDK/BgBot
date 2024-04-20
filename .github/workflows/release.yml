@@ -23,15 +23,6 @@ jobs:
         run: ./gradlew bootJar
 
       - name: Test
-        run: | 
-          ls -la
-
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: test2
         run: |
           ls -la
 
@@ -44,3 +35,7 @@ jobs:
           title: Release
           files: |
             ./gitlab-monitor.jar
+
+      - name: Test2
+        run: | 
+          ls -la
