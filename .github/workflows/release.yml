@@ -1,17 +1,13 @@
-name: Create release.
+name: Create release
 
 on:
   push:
-    branches: ['30-releases']
-
-permissions: write-all
+    branches:
+      - '30-releases'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
 
     steps:
       - name: Checkout Repository
@@ -24,24 +20,19 @@ jobs:
           distribution: 'temurin'
 
       - name: Build with Gradle
-        uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
-        with:
-          arguments: bootJar
+        run: ./gradlew bootJar
 
-  relese:
+  release:
     needs: build
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
 
     steps:
-      - name: Release
+      - name: Create Release
         uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
-            repo_token: "${{ secrets.TOKEN }}"
-            prerelease: false
-            automatic_release_tag: "${{ github.run_number }}"
-            title: Release
-            files: |
-              ./gitlab-monitor.jar
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          automatic_release_tag: "${{ github.run_number }}"
+          title: Release
+          files: |
+            ./build/libs/gitlab-monitor.jar
