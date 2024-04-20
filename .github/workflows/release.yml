@@ -3,7 +3,7 @@ name: Create release
 on:
   push:
     branches:
-      - '30-releases'
+      - 'main'
 
 jobs:
   build:
@@ -22,10 +22,6 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew bootJar
 
-      - name: Test
-        run: |
-          ls -la
-
       - name: Create Release
         uses: marvinpinto/action-automatic-releases@latest
         with:
@@ -35,7 +31,3 @@ jobs:
           title: Release
           files: |
             ./gitlab-monitor.jar
-
-      - name: Test2
-        run: | 
-          ls -la
