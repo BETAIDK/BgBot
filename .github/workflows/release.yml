@@ -37,7 +37,7 @@ jobs:
 
     steps:
       - name: Release
-        uses: IdanKoblik/action-automatic-releases@v0.2
+        uses: imarvinpinto/action-automatic-releases@latest
         with:
           repo_token: "${{ secrets.TOKEN }}"
           prerelease: false
