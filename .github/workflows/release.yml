@@ -37,11 +37,11 @@ jobs:
 
     steps:
       - name: Release
-        uses: imarvinpinto/action-automatic-releases@latest
+        uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
-          repo_token: "${{ secrets.TOKEN }}"
-          prerelease: false
-          automatic_release_tag: "${{ github.run_number }}"
-          title: Release
-          files: |
-            ./gitlab-monitor.jar
+            repo_token: "${{ secrets.TOKEN }}"
+            prerelease: false
+            automatic_release_tag: "${{ github.run_number }}"
+            title: Release
+            files: |
+              ./gitlab-monitor.jar
