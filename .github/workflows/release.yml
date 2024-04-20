@@ -39,4 +39,4 @@ jobs:
           automatic_release_tag: "${{ github.run_number }}"
           title: Release
           files: |
-            ./gitlab-monitor.jar
+            gitlab-monitor.jar
