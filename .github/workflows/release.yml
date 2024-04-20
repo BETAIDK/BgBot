@@ -36,9 +36,6 @@ jobs:
       packages: write
 
     steps:
-      - name: test
-        run: |
-          ls -la /build/libs
       - name: Release
         uses: IdanKoblik/action-automatic-releases@v0.2
         with:
@@ -47,4 +44,4 @@ jobs:
           automatic_release_tag: "${{ github.run_number }}"
           title: Release
           files: |
-            ./build/libs/gitlab_monitor.jar
+            ./gitlab-monitor.jar
