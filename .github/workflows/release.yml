@@ -29,19 +29,22 @@ jobs:
           arguments: bootJar
 
   relese:
+    needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
-    needs: build
 
     steps:
+      - name: test
+        run: |
+          ls -la /build/libs
       - name: Release
         uses: IdanKoblik/action-automatic-releases@v0.2
         with:
           repo_token: "${{ secrets.TOKEN }}"
           prerelease: false
-          automatic_release_tag: "${{ secrets.TOKEN }}"
+          automatic_release_tag: "${{ github.run_number }}"
           title: Release
           files: |
             ./build/libs/gitlab_monitor.jar
