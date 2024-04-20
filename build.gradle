@@ -26,6 +26,10 @@ repositories {
     }
 }
 
+bootJar {
+    destinationDirectory = file(project.projectDir)
+}
+
 springBoot {
     mainClass = "dev.idan.bgbot.BgbotApplication"
 }
